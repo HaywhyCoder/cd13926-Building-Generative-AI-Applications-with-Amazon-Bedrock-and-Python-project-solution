@@ -61,10 +61,11 @@ resource "aws_security_group" "aurora_sg" {
   }
 }
 
-# New resources for secret management
+# New resources for secret managementS
 resource "random_password" "master_password" {
   length  = 16
   special = true
+  override_special = "!#$%&()*+,-.:;<=>?[]^_`{|}~" # Only allowed special characters
 }
 
 resource "aws_secretsmanager_secret" "aurora_secret" {
